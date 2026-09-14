@@ -1,0 +1,11 @@
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\bin\Debug\net9.0\StickmanFight.Common.deps.json
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\bin\Debug\net9.0\StickmanFight.Common.dll
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\bin\Debug\net9.0\StickmanFight.Common.pdb
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.AssemblyInfoInputs.cache
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.AssemblyInfo.cs
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.csproj.CoreCompileInputs.cache
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.dll
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\refint\StickmanFight.Common.dll
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\StickmanFight.Common.pdb
+C:\7 семестр\Проектирование и разработка многопользовательских игр и клиент-серверных систем\Practice1_UDP\src\StickmanFight.Common\obj\Debug\net9.0\ref\StickmanFight.Common.dll
