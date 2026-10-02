@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>StickmanFight.Reliable.Server</RootNamespace>
+    <AssemblyName>StickmanFight.Server</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\protocol\StickmanFight.Protocol.csproj" />
+    <ProjectReference Include="..\telemetry\StickmanFight.Telemetry.csproj" />
+    <ProjectReference Include="..\transport\StickmanFight.Transport.csproj" />
+    <ProjectReference Include="..\reliability\StickmanFight.Reliability.csproj" />
+  </ItemGroup>
+
+</Project>
