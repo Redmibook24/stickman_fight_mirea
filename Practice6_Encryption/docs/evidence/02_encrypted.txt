@@ -1,0 +1,25 @@
+# После шифрования (X25519 + AES-256-GCM)
+
+## Клиент
+server 127.0.0.1:9000 -> 127.0.0.1
+WARNING: сервер не аутентифицирован (нет --pin), MITM на обмене ключами возможен
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+MOVEMENT seq=3 -> ACK 3 (decrypted)
+SHOOT seq=4 -> ACK 4 (decrypted)
+MOVEMENT seq=5 -> ACK 5 (decrypted)
+MOVEMENT seq=6 -> ACK 6 (decrypted)
+SHOOT seq=7 -> ACK 7 (decrypted)
+done: 7/7 replies decrypted
+
+## Сервер
+Server on UDP 9000
+18:37:36 [127.0.0.1:52508] session established
+18:37:36 [127.0.0.1:52508] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:37:36 [127.0.0.1:52508] MOVEMENT seq=2 (0.0, 0.0, 0.0)
+18:37:36 [127.0.0.1:52508] MOVEMENT seq=3 (1.0, 0.0, 2.0)
+18:37:36 [127.0.0.1:52508] SHOOT seq=4 weapon=1 dir=(0.60, 0.80)
+18:37:37 [127.0.0.1:52508] MOVEMENT seq=5 (2.0, 0.0, 4.0)
+18:37:37 [127.0.0.1:52508] MOVEMENT seq=6 (3.0, 0.0, 6.0)
+18:37:37 [127.0.0.1:52508] SHOOT seq=7 weapon=1 dir=(0.60, 0.80)

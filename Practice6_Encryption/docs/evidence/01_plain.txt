@@ -1,0 +1,21 @@
+# До шифрования (--plain)
+
+## Клиент
+server 127.0.0.1:9000 -> 127.0.0.1
+seq=1 -> ACK
+seq=2 -> ACK
+seq=3 -> ACK
+seq=4 -> ACK
+seq=5 -> ACK
+seq=6 -> ACK
+seq=7 -> ACK
+
+## Сервер
+Server on UDP 9000 (plain allowed)
+18:37:33 [127.0.0.1:45017] PLAIN LOGIN seq=1 user=dima
+18:37:33 [127.0.0.1:45017] PLAIN MOVEMENT seq=2 (0.0, 0.0, 0.0)
+18:37:33 [127.0.0.1:45017] PLAIN MOVEMENT seq=3 (1.0, 0.0, 2.0)
+18:37:33 [127.0.0.1:45017] PLAIN SHOOT seq=4 weapon=1 dir=(0.60, 0.80)
+18:37:34 [127.0.0.1:45017] PLAIN MOVEMENT seq=5 (2.0, 0.0, 4.0)
+18:37:34 [127.0.0.1:45017] PLAIN MOVEMENT seq=6 (3.0, 0.0, 6.0)
+18:37:34 [127.0.0.1:45017] PLAIN SHOOT seq=7 weapon=1 dir=(0.60, 0.80)

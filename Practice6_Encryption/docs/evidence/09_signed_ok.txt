@@ -1,0 +1,20 @@
+# Подписанное рукопожатие без атакующего
+
+## Клиент
+server 127.0.0.1:9000 -> 127.0.0.1
+server signature OK (pinned Ed25519 key)
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+MOVEMENT seq=3 -> ACK 3 (decrypted)
+SHOOT seq=4 -> ACK 4 (decrypted)
+done: 4/4 replies decrypted
+
+## Сервер
+Handshake signing key (Ed25519), pin for clients: aad67df196e0ff05538aa2cc2c7d45ac67936e5a709da290c311fb062e072921
+Server on UDP 9000
+18:37:53 [127.0.0.1:33951] session established (signed)
+18:37:53 [127.0.0.1:33951] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:37:53 [127.0.0.1:33951] MOVEMENT seq=2 (0.0, 0.0, 0.0)
+18:37:53 [127.0.0.1:33951] MOVEMENT seq=3 (1.0, 0.0, 2.0)
+18:37:53 [127.0.0.1:33951] SHOOT seq=4 weapon=1 dir=(0.60, 0.80)

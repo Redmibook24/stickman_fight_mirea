@@ -1,0 +1,17 @@
+$ tshark -r docs/captures/before_plain.pcap -Y "frame.number==1" -O udp,data -V -x
+User Datagram Protocol, Src Port: 45017, Dst Port: 9000
+    Source Port: 45017
+    Length: 45
+    Checksum: 0xfe40 [unverified]
+        [Time since first frame: 0.000000000 seconds]
+        [Time since previous frame: 0.000000000 seconds]
+    UDP payload (37 bytes)
+Data (37 bytes)
+    Data: 040100200064696d610000000000000000000000007333637233742d706173730000000000
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 08 00 45 00   ..............E.
+0010  00 41 37 79 40 00 40 11 05 31 7f 00 00 01 7f 00   .A7y@.@..1......
+0020  00 01 af d9 23 28 00 2d fe 40 04 01 00 20 00 64   ....#(.-.@... .d
+0030  69 6d 61 00 00 00 00 00 00 00 00 00 00 00 00 73   ima............s
+0040  33 63 72 33 74 2d 70 61 73 73 00 00 00 00 00      3cr3t-pass.....
+

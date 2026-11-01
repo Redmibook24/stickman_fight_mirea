@@ -1,0 +1,19 @@
+# Защита: подпись рукопожатия Ed25519 + pin, MITM обнаружен
+
+## Клиент
+server 127.0.0.1:9001 -> 127.0.0.1
+handshake REJECTED: подпись сервера не совпадает с --pin (возможен MITM)
+handshake failed
+
+## Сервер
+Handshake signing key (Ed25519), pin for clients: aad67df196e0ff05538aa2cc2c7d45ac67936e5a709da290c311fb062e072921
+Server on UDP 9000
+18:37:52 [127.0.0.1:60950] session established (signed)
+
+## Прокси
+proxy :9001 -> 127.0.0.1:9000, mode=dh-mitm
+C->S KEY_EXCHANGE seq=0   len=32  body=2b fb 04 bc a1 19 00 ad 72 93 bf 18 3d d9 da 0d 18 98 d4 b9 c8 6e 43 22 …
+  [MITM] перехвачен открытый ключ клиента, серверу уходит ключ атакующего
+S->C KEY_EXCHANGE seq=0   len=96  body=f2 05 f4 a7 d0 ce 89 24 19 3e 05 e0 a3 ce 54 37 ef a9 77 2e d4 7a 76 e8 …
+  [MITM] две сессии: клиент↔атакующий и атакующий↔сервер, оба ключа известны
+  [MITM] сервер подписал рукопожатие — подпись не подойдёт к подменённому ключу

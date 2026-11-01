@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="349" font-family="Consolas, DejaVu Sans Mono, monospace" font-size="13">
+<rect width="860" height="349" rx="8" fill="#1e1f24"/>
+<rect width="860" height="30" rx="8" fill="#2d2f36"/><rect y="22" width="860" height="8" fill="#2d2f36"/>
+<circle cx="18" cy="15" r="5" fill="#ff5f57"/><circle cx="36" cy="15" r="5" fill="#febc2e"/><circle cx="54" cy="15" r="5" fill="#28c840"/>
+<text x="430.0" y="20" fill="#c9ccd3" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13">До шифрования: LOGIN в открытом виде (tshark, before_plain.pcap)</text>
+<text x="14" y="44" fill="#7ec7ff" xml:space="preserve" style="white-space:pre">$ tshark -r docs/captures/before_plain.pcap -Y &quot;frame.number==1&quot; -O udp,data -V -x</text>
+<text x="14" y="61" fill="#ffd479" xml:space="preserve" style="white-space:pre">User Datagram Protocol, Src Port: 45017, Dst Port: 9000</text>
+<text x="14" y="78" fill="#d7dae0" xml:space="preserve" style="white-space:pre">    Source Port: 45017</text>
+<text x="14" y="95" fill="#d7dae0" xml:space="preserve" style="white-space:pre">    Length: 45</text>
+<text x="14" y="112" fill="#d7dae0" xml:space="preserve" style="white-space:pre">    Checksum: 0xfe40 [unverified]</text>
+<text x="14" y="129" fill="#d7dae0" xml:space="preserve" style="white-space:pre">        [Time since first frame: 0.000000000 seconds]</text>
+<text x="14" y="146" fill="#d7dae0" xml:space="preserve" style="white-space:pre">        [Time since previous frame: 0.000000000 seconds]</text>
+<text x="14" y="163" fill="#d7dae0" xml:space="preserve" style="white-space:pre">    UDP payload (37 bytes)</text>
+<text x="14" y="180" fill="#ffd479" xml:space="preserve" style="white-space:pre">Data (37 bytes)</text>
+<rect x="8" y="185" width="844" height="17" fill="#5a2a2a"/>
+<text x="14" y="197" fill="#d7dae0" xml:space="preserve" style="white-space:pre">    Data: 040100200064696d610000000000000000000000007333637233742d706173730000000000</text>
+<text x="14" y="214" fill="#d7dae0" xml:space="preserve" style="white-space:pre"></text>
+<text x="14" y="231" fill="#d7dae0" xml:space="preserve" style="white-space:pre">0000  00 00 00 00 00 00 00 00 00 00 00 00 08 00 45 00   ..............E.</text>
+<text x="14" y="248" fill="#d7dae0" xml:space="preserve" style="white-space:pre">0010  00 41 37 79 40 00 40 11 05 31 7f 00 00 01 7f 00   .A7y@.@..1......</text>
+<text x="14" y="265" fill="#d7dae0" xml:space="preserve" style="white-space:pre">0020  00 01 af d9 23 28 00 2d fe 40 04 01 00 20 00 64   ....#(.-.@... .d</text>
+<rect x="8" y="270" width="844" height="17" fill="#5a2a2a"/>
+<text x="14" y="282" fill="#d7dae0" xml:space="preserve" style="white-space:pre">0030  69 6d 61 00 00 00 00 00 00 00 00 00 00 00 00 73   ima............s</text>
+<rect x="8" y="287" width="844" height="17" fill="#5a2a2a"/>
+<text x="14" y="299" fill="#d7dae0" xml:space="preserve" style="white-space:pre">0040  33 63 72 33 74 2d 70 61 73 73 00 00 00 00 00      3cr3t-pass.....</text>
+<text x="14" y="316" fill="#d7dae0" xml:space="preserve" style="white-space:pre"></text>
+</svg>

@@ -1,0 +1,69 @@
+# Без Simple Proxy Protocol: origin видит только адрес прокси
+
+## Клиент (172.30.0.30) → game.example.com:9000
+server game.example.com:9000 -> 172.30.0.20
+WARNING: сервер не аутентифицирован (нет --pin), MITM на обмене ключами возможен
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+MOVEMENT seq=3 -> ACK 3 (decrypted)
+SHOOT seq=4 -> ACK 4 (decrypted)
+done: 4/4 replies decrypted
+
+## Прямое подключение к origin мимо прокси (172.30.0.30 → 172.30.0.10:9000)
+server 172.30.0.10:9000 -> 172.30.0.10
+WARNING: сервер не аутентифицирован (нет --pin), MITM на обмене ключами возможен
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+done: 2/2 replies decrypted
+
+## Прокси (эмулятор Spectrum)
+spectrum-emulator 172.30.0.20:9000 -> origin 172.30.0.10:9000, SPP=off
+new client 172.30.0.30:43626 -> origin from 172.30.0.20:52163
+
+## Origin
+Server on UDP 9000
+18:38:47 [172.30.0.20:52163] session established
+18:38:47 [172.30.0.20:52163] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:38:47 [172.30.0.20:52163] MOVEMENT seq=2 (0.0, 0.0, 0.0)
+18:38:47 [172.30.0.20:52163] MOVEMENT seq=3 (1.0, 0.0, 2.0)
+18:38:47 [172.30.0.20:52163] SHOOT seq=4 weapon=1 dir=(0.60, 0.80)
+18:38:48 [172.30.0.30:57346] session established
+18:38:48 [172.30.0.30:57346] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:38:48 [172.30.0.30:57346] MOVEMENT seq=2 (0.0, 0.0, 0.0)
+
+# С Simple Proxy Protocol: origin видит реальный адрес клиента и отбрасывает пакеты мимо прокси
+
+## Клиент (172.30.0.30) → game.example.com:9000
+server game.example.com:9000 -> 172.30.0.20
+WARNING: сервер не аутентифицирован (нет --pin), MITM на обмене ключами возможен
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+MOVEMENT seq=3 -> ACK 3 (decrypted)
+SHOOT seq=4 -> ACK 4 (decrypted)
+done: 4/4 replies decrypted
+
+## Прямое подключение к origin мимо прокси (172.30.0.30 → 172.30.0.10:9000)
+server 172.30.0.10:9000 -> 172.30.0.10
+handshake attempt 1: timeout
+handshake attempt 2: timeout
+handshake attempt 3: timeout
+handshake failed
+
+## Прокси (эмулятор Spectrum)
+spectrum-emulator 172.30.0.20:9000 -> origin 172.30.0.10:9000, SPP=on
+new client 172.30.0.30:58543 -> origin from 172.30.0.20:54085
+
+## Origin
+Server on UDP 9000 (Spectrum SPP)
+18:38:54 [172.30.0.30:58543 via 172.30.0.20:54085] session established
+18:38:54 [172.30.0.30:58543 via 172.30.0.20:54085] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:38:54 [172.30.0.30:58543 via 172.30.0.20:54085] MOVEMENT seq=2 (0.0, 0.0, 0.0)
+18:38:54 [172.30.0.30:58543 via 172.30.0.20:54085] MOVEMENT seq=3 (1.0, 0.0, 2.0)
+18:38:54 [172.30.0.30:58543 via 172.30.0.20:54085] SHOOT seq=4 weapon=1 dir=(0.60, 0.80)
+18:38:55 [172.30.0.30:47473] DROP: нет заголовка Simple Proxy Protocol
+18:38:56 [172.30.0.30:47473] DROP: нет заголовка Simple Proxy Protocol
+18:38:57 [172.30.0.30:47473] DROP: нет заголовка Simple Proxy Protocol
+

@@ -1,0 +1,19 @@
+$ tshark -r docs/captures/after_encrypted.pcap -Y "frame.number==3" -O udp,data -V -x
+User Datagram Protocol, Src Port: 52508, Dst Port: 9000
+    Source Port: 52508
+    Length: 74
+    Checksum: 0xfe5d [unverified]
+        [Time since first frame: 0.002642000 seconds]
+        [Time since previous frame: 0.000518000 seconds]
+    UDP payload (66 bytes)
+Data (66 bytes)
+    Data: 0b01003d0000000000010000000000000040d66ee823f6cebc7798dbccaf393a34f66598ff10b0258865cd043c58ed96316258e1a191c2e03b3a68b842d0d85e20d2
+
+0000  00 00 00 00 00 00 00 00 00 00 00 00 08 00 45 00   ..............E.
+0010  00 5e 33 22 40 00 40 11 09 6b 7f 00 00 01 7f 00   .^3"@.@..k......
+0020  00 01 cd 1c 23 28 00 4a fe 5d 0b 01 00 3d 00 00   ....#(.J.]...=..
+0030  00 00 00 01 00 00 00 00 00 00 00 40 d6 6e e8 23   ...........@.n.#
+0040  f6 ce bc 77 98 db cc af 39 3a 34 f6 65 98 ff 10   ...w....9:4.e...
+0050  b0 25 88 65 cd 04 3c 58 ed 96 31 62 58 e1 a1 91   .%.e..<X..1bX...
+0060  c2 e0 3b 3a 68 b8 42 d0 d8 5e 20 d2               ..;:h.B..^ .
+

@@ -1,0 +1,42 @@
+# Ограничение: MITM на неаутентифицированном Диффи–Хеллмане
+
+## Клиент
+server 127.0.0.1:9001 -> 127.0.0.1
+WARNING: сервер не аутентифицирован (нет --pin), MITM на обмене ключами возможен
+handshake OK
+LOGIN seq=1 -> ACK 1 (decrypted)
+MOVEMENT seq=2 -> ACK 2 (decrypted)
+MOVEMENT seq=3 -> ACK 3 (decrypted)
+SHOOT seq=4 -> ACK 4 (decrypted)
+done: 4/4 replies decrypted
+
+## Сервер
+Server on UDP 9000
+18:37:50 [127.0.0.1:35690] session established
+18:37:50 [127.0.0.1:35690] LOGIN seq=1 user=dima (пароль получен, 11 симв.)
+18:37:50 [127.0.0.1:35690] MOVEMENT seq=2 (999.0, 0.0, 0.0)
+18:37:50 [127.0.0.1:35690] MOVEMENT seq=3 (999.0, 0.0, 2.0)
+18:37:50 [127.0.0.1:35690] SHOOT seq=4 weapon=1 dir=(0.60, 0.80)
+
+## Прокси
+proxy :9001 -> 127.0.0.1:9000, mode=dh-mitm
+C->S KEY_EXCHANGE seq=0   len=32  body=41 7c 5f 6b 84 4f 50 97 40 f6 21 8b d9 cb 00 e3 12 0e 08 75 d6 57 25 38 …
+  [MITM] перехвачен открытый ключ клиента, серверу уходит ключ атакующего
+S->C KEY_EXCHANGE seq=0   len=32  body=d2 63 1d d7 ec 9e 96 63 f5 df be 18 63 26 8a 0f 66 76 07 14 fe d3 49 0f …
+  [MITM] две сессии: клиент↔атакующий и атакующий↔сервер, оба ключа известны
+C->S ENCRYPTED    seq=1   len=61  body=00 00 00 00 01 00 00 00 00 00 00 00 c2 c2 84 47 e9 f8 8c c9 59 c5 3e 6b …
+  [MITM] расшифрован LOGIN: user=dima password=s3cr3t-pass
+S->C ENCRYPTED    seq=1   len=31  body=00 00 00 00 01 00 00 00 00 00 00 80 3a 31 24 22 60 1c 80 a3 7d fa 9c be …
+  [MITM] расшифрован ACK: 03 01 00
+C->S ENCRYPTED    seq=2   len=41  body=00 00 00 00 02 00 00 00 00 00 00 00 2f 3d bc d9 11 21 48 d3 49 06 1a 25 …
+  [MITM] расшифрован MOVEMENT (0.0, 0.0, 0.0) → подменён на (999.0, 0.0, 0.0)
+S->C ENCRYPTED    seq=2   len=31  body=00 00 00 00 02 00 00 00 00 00 00 80 bf 09 fd a5 91 74 7a c3 29 c4 b7 c4 …
+  [MITM] расшифрован ACK: 03 02 00
+C->S ENCRYPTED    seq=3   len=41  body=00 00 00 00 03 00 00 00 00 00 00 00 72 11 7b 01 6e 77 32 f2 c9 b1 04 3d …
+  [MITM] расшифрован MOVEMENT (1.0, 0.0, 2.0) → подменён на (999.0, 0.0, 2.0)
+S->C ENCRYPTED    seq=3   len=31  body=00 00 00 00 03 00 00 00 00 00 00 80 fc 4f c3 dd 36 39 6e ca 81 19 5e 65 …
+  [MITM] расшифрован ACK: 03 03 00
+C->S ENCRYPTED    seq=4   len=38  body=00 00 00 00 04 00 00 00 00 00 00 00 9e 62 10 81 81 09 a2 dc 27 4e a0 1c …
+  [MITM] расшифрован SHOOT: 02 01 9a 99 19 3f cd cc 4c 3f
+S->C ENCRYPTED    seq=4   len=31  body=00 00 00 00 04 00 00 00 00 00 00 80 39 3c 68 00 d3 ed 6a b6 6c e9 31 7c …
+  [MITM] расшифрован ACK: 03 04 00
