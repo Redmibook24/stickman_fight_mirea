@@ -14,9 +14,14 @@ OUT = os.path.join(ROOT, "docs", "screenshots")
 
 
 def render(src, dst, title, highlight):
+    """Рисует текстовый файл src как тёмное окно терминала в SVG dst.
+
+    Строки, содержащие любую подстроку из highlight, подсвечиваются красным фоном:
+    так на картинке «до» сразу видно, где в трафике лежит пароль.
+    """
     with open(src, encoding="utf-8") as f:
         lines = [l.rstrip("\n") for l in f]
-    # длинную строку Data переносим по 64 символа
+    # длинные строки переносим по 96 символов, продолжение с отступом
     wrapped = []
     for l in lines:
         while len(l) > 96:
@@ -42,6 +47,7 @@ def render(src, dst, title, highlight):
 
 
 def main():
+    """Две картинки для Security.md: трафик до и после шифрования."""
     os.makedirs(OUT, exist_ok=True)
     render(os.path.join(EV, "wireshark_data_before_plain.txt"), os.path.join(OUT, "capture_before.svg"),
            "До шифрования: LOGIN в открытом виде (tshark, before_plain.pcap)", ["ima....", "3cr3t-pass", "7333637233742d70617373"])

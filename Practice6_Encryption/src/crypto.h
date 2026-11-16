@@ -16,6 +16,8 @@ constexpr int TAG_SIZE   = 16;
 // у пакетов сервера установлен старший бит. Заодно это отсекает «отражённые» пакеты.
 constexpr uint64_t SERVER_COUNTER_BIT = 1ull << 63;
 
+// Пара ключей X25519: закрытая часть внутри объекта OpenSSL, открытая отдельно сырыми байтами,
+// потому что именно в таком виде она уходит в сеть. Освобождать через FreeKeyPair.
 struct KeyPair {
     EVP_PKEY* pkey = nullptr;
     uint8_t   pub[PUB_SIZE] = {0};
@@ -46,6 +48,8 @@ uint64_t CounterFromPacket(const uint8_t* packet, int packetLen);
 
 // Окно защиты от повторов (как в IPsec/DTLS): каждый счётчик принимается не более одного раза,
 // допускается переупорядочивание в пределах последних 64 пакетов, более старые отбрасываются.
+// Проверка разделена на два шага намеренно: Check до расшифровки, Accept только после
+// проверки тега (подробно в crypto.cpp у ReplayWindow::Accept).
 class ReplayWindow {
 public:
     bool Check(uint64_t counter) const;  // можно ли принимать (до расшифровки)

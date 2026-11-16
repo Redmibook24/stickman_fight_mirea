@@ -1,4 +1,6 @@
 // Самопроверка: g++ -std=c++17 crypto_test.cpp crypto.cpp -lcrypto -o crypto_test
+// Модульные тесты криптомодуля без сети: 24 проверки, код возврата 0 только если прошли все.
+// Каждая проверка печатает [OK] или [FAIL] с описанием, итог в последней строке.
 #include "crypto.h"
 #include <cstdio>
 #include <cstring>
@@ -6,6 +8,8 @@
 #include <vector>
 using namespace crypto;
 
+// Мини-«фреймворк» тестов: печатает результат и считает провалы, но не останавливается
+// на первом же провале, чтобы за один запуск увидеть все сломанные проверки.
 static int g_Failed = 0;
 static void Check(bool ok, const char* what) {
     printf("[%s] %s\n", ok ? "OK" : "FAIL", what);
@@ -13,11 +17,13 @@ static void Check(bool ok, const char* what) {
 }
 
 int main() {
+    // обмен ключами: a это «клиент», b это «сервер», у обоих должен получиться один ключ
     KeyPair a = GenerateKeyPair(), b = GenerateKeyPair();
     uint8_t ka[KEY_SIZE], kb[KEY_SIZE];
     if (!DeriveSessionKey(a.pkey, b.pub, ka) || !DeriveSessionKey(b.pkey, a.pub, kb)) { puts("FAIL derive"); return 1; }
     Check(memcmp(ka, kb, KEY_SIZE) == 0, "ключи совпадают");
 
+    // шифрование и расшифровка; hdr имитирует открытый заголовок ENCRYPTED (тип 11, seq 1)
     const char* msg = "MOVE 12.5 0.0 7.3";
     uint8_t hdr[5] = {11, 1, 0, 0, 0};
     auto pkt = EncryptAES(ka, 1, (const uint8_t*)msg, (int)strlen(msg), hdr, 5);
@@ -27,6 +33,9 @@ int main() {
     Check(pkt.size() == NONCE_SIZE + strlen(msg) + TAG_SIZE, "размер пакета = 12 + N + 16");
     Check(memmem(pkt.data(), pkt.size(), msg, strlen(msg)) == nullptr, "открытый текст не виден в пакете");
 
+    // Негативные тесты: портим по одному биту в каждой части пакета (xor 1), проверяем отказ
+    // и возвращаем бит обратно, чтобы следующая проверка шла по исходному пакету.
+    // Байт 14 попадает в шифртекст, байт 2 в nonce, последний байт в тег.
     pkt[14] ^= 1;
     Check(!DecryptAES(kb, pkt.data(), (int)pkt.size(), hdr, 5, out), "подмена шифртекста отклонена");
     pkt[14] ^= 1;
@@ -41,6 +50,7 @@ int main() {
     hdr[1] ^= 1;
     Check(!DecryptAES(kb, pkt.data(), (int)pkt.size() - 3, hdr, 5, out), "обрезанный пакет отклонён");
 
+    // c это посторонний: его ключ сессии с «клиентом» отличается, расшифровать пакет он не может
     KeyPair c = GenerateKeyPair();
     uint8_t kc[KEY_SIZE];
     DeriveSessionKey(c.pkey, a.pub, kc);
@@ -58,7 +68,7 @@ int main() {
     auto p2 = EncryptAES(ka, 7 | SERVER_COUNTER_BIT, (const uint8_t*)msg, 4, hdr, 5);
     Check(memcmp(p1.data(), p2.data(), NONCE_SIZE) != 0, "nonce клиента и сервера не пересекаются");
 
-    // окно защиты от повторов
+    // окно защиты от повторов: пакеты приходят как 1, 5, 3, а затем скачок до 200
     ReplayWindow w;
     Check(!w.Check(0), "счётчик 0 не принимается");
     Check(w.Check(1), "первый пакет принят");
@@ -72,7 +82,8 @@ int main() {
     Check(!w.Check(100), "пакет старше окна (64) отклонён");
     Check(w.Check(199) && w.Check(150), "непринятые пакеты в окне ещё допустимы");
 
-    // аутентификация сервера (Ed25519)
+    // аутентификация сервера (Ed25519): ключ сохраняется в файл и при повторной загрузке
+    // тот же; подпись рукопожатия a-b верна, а при подмене любого из двух ключей на c нет
     remove("test_sign.pem");
     uint8_t spub[SIG_PUB_SIZE], spub2[SIG_PUB_SIZE], sig[SIG_SIZE];
     EVP_PKEY* sk = LoadOrCreateSigningKey("test_sign.pem", spub);

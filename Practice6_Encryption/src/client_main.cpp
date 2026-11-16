@@ -20,6 +20,12 @@
 #include "crypto.h"
 using namespace crypto;
 
+// Сценарий клиента (функция main): подключиться к серверу, затем
+//   --plain: отправить открытые LOGIN, MOVEMENT, SHOOT (снимок трафика «до»);
+//   иначе:   рукопожатие X25519 (с проверкой подписи, если задан --pin), затем те же команды
+//            в зашифрованном виде; на каждую ждём зашифрованный ACK и проверяем его.
+
+// Параметры командной строки клиента (см. описание флагов в начале файла).
 struct Options {
     std::string host = "127.0.0.1";
     std::string port = std::to_string(PORT);
@@ -28,9 +34,10 @@ struct Options {
     uint8_t pin[SIG_PUB_SIZE];
     int count = 5;
     std::string user = "dima";
-    std::string password = "s3cr3t-pass";
+    std::string password = "s3cr3t-pass";   // учебный пароль: по нему видно утечку на снимке «до»
 };
 
+// Строка из 2*len шестнадцатеричных символов -> len байт. Нужна для --pin (64 символа = 32 байта).
 static bool ParseHex(const char* hex, uint8_t* out, size_t len) {
     if (strlen(hex) != len * 2) return false;
     for (size_t i = 0; i < len; ++i)
@@ -38,6 +45,7 @@ static bool ParseHex(const char* hex, uint8_t* out, size_t len) {
     return true;
 }
 
+// Разбор флагов. Аргумент без "--" считается адресом сервера: "host" или "host:port".
 static bool ParseArgs(int argc, char** argv, Options& o) {
     for (int i = 1; i < argc; ++i) {
         std::string a = argv[i];
@@ -60,6 +68,10 @@ static bool ParseArgs(int argc, char** argv, Options& o) {
 }
 
 // Сокет, «подключённый» к серверу: recv принимает датаграммы только с его адреса.
+// Для UDP connect() не устанавливает соединение, а лишь запоминает адрес: чужие пакеты
+// с других адресов ядро отбрасывает само, и они не могут сорвать рукопожатие.
+// getaddrinfo разрешает и IP, и доменное имя, поэтому работает адрес game.example.com:9000.
+// Тайм-аут приёма 1 с: UDP-пакет может потеряться, и recv не должен ждать вечно.
 static int Connect(const Options& o) {
     addrinfo hints{}, *res = nullptr;
     hints.ai_family = AF_INET;
@@ -79,6 +91,8 @@ static int Connect(const Options& o) {
     return s;
 }
 
+// Заполняет структуру LOGIN. strncpy с размером минус 1 и обнулённая структура гарантируют
+// завершающий ноль, даже если имя или пароль длиннее 15 символов.
 static LoginPayload MakeLogin(const Options& o) {
     LoginPayload l{};
     strncpy(l.user, o.user.c_str(), sizeof(l.user) - 1);
@@ -87,6 +101,8 @@ static LoginPayload MakeLogin(const Options& o) {
 }
 
 // ───────── режим «до шифрования» ─────────
+// Шлёт команды открытым текстом, чтобы в Wireshark было видно, что утекает без защиты:
+// имя, пароль, координаты и тип каждой команды. Сервер принимает их только с --allow-plain.
 static int RunPlain(int s, const Options& o) {
     uint16_t seq = 0;
     uint8_t buf[MAX_PACKET];
@@ -112,6 +128,12 @@ static int RunPlain(int s, const Options& o) {
 }
 
 // ───────── зашифрованный режим ─────────
+
+// Рукопожатие: обмен открытыми ключами X25519 и вывод общего ключа сессии в key.
+// Ответ сервера: 32 байта его открытого ключа, а если сервер подписывает рукопожатие,
+// ещё 64 байта подписи Ed25519. С --pin клиент принимает ТОЛЬКО ответ с верной подписью:
+// это и есть защита от MITM, без неё клиент честно предупреждает, что сервер не проверен.
+// Возвращает false, если сервер не ответил за 3 попытки или подпись не сошлась.
 static bool Handshake(int s, const Options& o, uint8_t key[KEY_SIZE]) {
     uint8_t buf[MAX_PACKET];
     KeyPair kp = GenerateKeyPair();
@@ -129,9 +151,12 @@ static bool Handshake(int s, const Options& o, uint8_t key[KEY_SIZE]) {
         int len = n - (int)sizeof(Header);
         if (h.type != PacketType::KEY_EXCHANGE || h.payloadSize != len) continue;
 
+        // По длине ответа понимаем, подписал ли сервер рукопожатие: 32 или 32 + 64 байта.
         bool signedReply = len == PUB_SIZE + SIG_SIZE;
         if (len != PUB_SIZE && !signedReply) continue;
         if (o.pinned) {
+            // Неподписанный ответ при заданном pin тоже отказ: иначе атакующий просто
+            // убрал бы подпись из пакета и обошёл проверку.
             if (!signedReply || !VerifyHandshake(o.pin, kp.pub, body, body + PUB_SIZE)) {
                 puts("handshake REJECTED: подпись сервера не совпадает с --pin (возможен MITM)");
                 FreeKeyPair(kp);
@@ -149,17 +174,23 @@ static bool Handshake(int s, const Options& o, uint8_t key[KEY_SIZE]) {
     return false;
 }
 
+// Рукопожатие, затем LOGIN и серия MOVEMENT/SHOOT в зашифрованном виде.
+// Код возврата 0, только если на каждую команду пришёл и расшифровался ACK:
+// по нему скрипт run_scenarios.sh понимает, прошёл ли сценарий.
 static int RunEncrypted(int s, const Options& o) {
     uint8_t key[KEY_SIZE];
     if (!Handshake(s, o, key)) { puts("handshake failed"); return 1; }
     puts("handshake OK");
 
-    uint64_t counter = 0;
-    uint16_t seq = 0;
-    ReplayWindow serverWindow;
+    uint64_t counter = 0;        // счётчик для nonce: 1, 2, 3... (НЕ rand(), см. EncryptAES)
+    uint16_t seq = 0;            // номер пакета в открытом заголовке, как в прошлых практиках
+    ReplayWindow serverWindow;   // клиент так же отсекает повторы ответов сервера
     uint8_t buf[MAX_PACKET];
     int okReplies = 0, sent = 0;
 
+    // Шифрует одну команду (inner = [внутренний тип][тело]), отправляет её и ждёт ACK.
+    // Ответ проверяется так же строго, как сервер проверяет запросы: тип, размер,
+    // счётчик сервера со старшим битом, окно повторов и тег.
     auto sendEncrypted = [&](const std::vector<uint8_t>& inner, const char* what) {
         // Заголовок (вместе с payloadSize) заполняется до шифрования: он целиком входит в AAD.
         Header h{PacketType::ENCRYPTED, ++seq, (uint16_t)(NONCE_SIZE + inner.size() + TAG_SIZE)};
@@ -175,13 +206,16 @@ static int RunEncrypted(int s, const Options& o) {
         int len = r - (int)sizeof(Header);
         uint64_t rc = CounterFromPacket(body, len);
         std::vector<uint8_t> plain;
+        // Ответ без старшего бита в счётчике создан не сервером: это наш же пакет,
+        // который кто-то вернул нам обратно (отражение).
         if (rh.type != PacketType::ENCRYPTED || rh.payloadSize != len || !(rc & SERVER_COUNTER_BIT) ||
             !serverWindow.Check(rc)) {
             printf("%s seq=%u -> отброшен ответ (тип/размер/счётчик)\n", what, seq);
         } else if (!DecryptAES(key, body, len, buf, sizeof(Header), plain)) {
             printf("%s seq=%u -> AUTH_FAIL\n", what, seq);
         } else {
-            serverWindow.Accept(rc);
+            serverWindow.Accept(rc);   // как и на сервере: только после проверки тега
+            // внутри ответа [ACK][номер подтверждённого пакета 2 байта]
             uint16_t acked = 0;
             if (plain.size() == INNER_TYPE_SIZE + sizeof(uint16_t)) memcpy(&acked, plain.data() + 1, 2);
             printf("%s seq=%u -> ACK %u (decrypted)\n", what, seq, acked);
@@ -189,9 +223,10 @@ static int RunEncrypted(int s, const Options& o) {
         }
     };
 
+    // Тот же сценарий, что в RunPlain: снимки «до» и «после» сравниваются один к одному.
     LoginPayload l = MakeLogin(o);
     sendEncrypted(MakeInner(PacketType::LOGIN, l), "LOGIN");
-    OPENSSL_cleanse(&l, sizeof(l));
+    OPENSSL_cleanse(&l, sizeof(l));   // пароль больше не нужен, затираем его в памяти
     for (int i = 0; i < o.count; ++i) {
         MovementPayload m{1.0f * i, 0.0f, 2.0f * i};
         sendEncrypted(MakeInner(PacketType::MOVEMENT, m), "MOVEMENT");
@@ -201,11 +236,12 @@ static int RunEncrypted(int s, const Options& o) {
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
-    OPENSSL_cleanse(key, sizeof(key));
+    OPENSSL_cleanse(key, sizeof(key));   // ключ сессии затираем при выходе
     printf("done: %d/%d replies decrypted\n", okReplies, sent);
     return okReplies == sent ? 0 : 3;
 }
 
+// Точка входа: разбор флагов, подключение и запуск выбранного режима.
 int main(int argc, char** argv) {
     Options o;
     if (!ParseArgs(argc, argv, o)) return 2;

@@ -23,10 +23,20 @@ def mapped(ip):
 
 
 def spp_header(client, proxy):
+    """38-байтный заголовок Simple Proxy Protocol (сетевой порядок байт, "!" в формате).
+
+    magic (2) | адрес клиента (16) | адрес прокси (16) | порт клиента (2) | порт прокси (2).
+    Сервер с --spp разбирает его в server_main.cpp и узнаёт реальный адрес игрока.
+    """
     return struct.pack("!H16s16sHH", SPP_MAGIC, mapped(client[0]), mapped(proxy[0]), client[1], proxy[1])
 
 
 def main():
+    """Цикл прокси: front слушает клиентов, на каждого клиента свой сокет к origin.
+
+    Отдельный сокет на клиента повторяет поведение Spectrum: origin видит разные порты
+    прокси и может отличать игроков даже без SPP, но реальный IP узнаёт только из SPP.
+    """
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--listen", type=int, default=9000)
     ap.add_argument("--origin", required=True)
@@ -61,6 +71,8 @@ def main():
             else:
                 data = sock.recv(2048)
                 client = owner[sock]
+                # Cloudflare требует, чтобы ответ origin начинался с того же заголовка SPP,
+                # иначе не знает, какому клиенту его вернуть; эмулятор проверяет и снимает его
                 if args.spp:
                     if len(data) < SPP_SIZE or struct.unpack_from("!H", data)[0] != SPP_MAGIC:
                         print("DROP: ответ origin без заголовка SPP", flush=True)
