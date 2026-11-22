@@ -1,0 +1,69 @@
+﻿[SteamSockets] клиент 4 подключён: адрес 172.18.0.1:60576, прямое соединение (relay не используется); End-to-end connection: connected
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:24:01.214] Персонаж игрока 4 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:24:01.347] [РЕПЛИКАЦИЯ] клиент 4 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:24:01.347] [СЕРВЕР] подключился клиент 4
+[Server 18:24:01] игрок 4 подключился, всего игроков: 3/4
+[entrypoint] Stickman Fight dedicated server: profile=steam, port=7777/udp, max=4
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+Processor: Intel(R) Core(TM) Ultra 5 125H, 18 core(s) @ 2995 MHz 
+Available Memory: 7624 MB 
+Linux Kernel and distribution: Linux 5.15 Ubuntu 22.04 64bit
+System Language: en
+Keyboard Layout: default
+Mono path[0] = '/srv/game/StickmanServer_Data/Managed'
+Mono config path = '/srv/game/StickmanServer_Data/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.6.10f1 (40e81493c67d)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /srv/game/StickmanServer_Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.011 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.944875 ms
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+dlopen failed trying to load:
+steamclient.so
+with error:
+steamclient.so: cannot open shared object file: No such file or directory
+[S_API] SteamAPI_Init(): Loaded '/srv/game/.steam/sdk64/steamclient.so' OK.  (First tried local 'steamclient.so')
+Setting breakpad minidump AppID = 480
+SteamInternal_SetMinidumpSteamID:  Caching Steam ID:  76561197960265728 [API loaded no]
+[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+[Steam 18:24:03] Steam GameServer инициализирован: App 480, игровой порт 7777/udp, query-порт 27015/udp, теги «proj:MultiplayerCourse_Stickman,build:0.1.0,mode:Deathmatch». Ждём регистрации в Steam...
+[SteamSockets] сервер: listen socket на UDP 7777 создан
+[Prac4] [18:24:03.951] [СЕРВЕР] на арене создано реплицируемых акторов: 168
+[Server 18:24:03] READY: сервер «Stickman Fight PR7» слушает 0.0.0.0:7777/udp, карта Prac5_Replication, профиль steam, транспорт SteamSocketsTransport, мест 4, сборка 0.1.0
+[Steam 18:24:06] сессия опубликована в Steam: SteamID сервера 90298028011735048, публичный IP <скрыт>
+[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+[SteamSockets] клиент 1 подключён: адрес 172.18.0.1:37873, прямое соединение (relay не используется); End-to-end connection: connected
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:24:25.373] Персонаж игрока 1 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:24:25.530] [РЕПЛИКАЦИЯ] клиент 1 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:24:25.530] [СЕРВЕР] подключился клиент 1
+[Server 18:24:25] игрок 1 подключился, всего игроков: 1/4
+[Prac4] [18:24:25.758] [СЕРВЕР] отключился клиент 1
+[Server 18:24:25] игрок 1 отключился, осталось игроков: 0
+[Server 18:24:25] получен сигнал остановки, завершаем сервер
+[Steam 18:24:26] сессия снята с публикации и уничтожена, Steam GameServer остановлен
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+CodeReloadManager destroyed

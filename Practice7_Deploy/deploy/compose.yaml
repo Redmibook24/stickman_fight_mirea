@@ -1,0 +1,42 @@
+# Запуск выделенного сервера ПР№7 через Docker Compose (из каталога Practice7_Deploy):
+#   docker compose -f deploy/compose.yaml up -d --build    собрать образ и запустить
+#   docker compose -f deploy/compose.yaml logs -f          логи сервера
+#   docker compose -f deploy/compose.yaml down             штатная остановка
+name: stickman-pr7
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: stickman-server:pr7
+    container_name: stickman-server
+
+    # Перезапуск при аварийном завершении процесса. unless-stopped не поднимает контейнер,
+    # который остановили вручную командой stop/down.
+    restart: unless-stopped
+
+    # Время на штатное завершение после SIGTERM: сервер закрывает Steam-сессию и соединения.
+    stop_grace_period: 15s
+
+    environment:
+      GAME_PORT: "7777"
+      SERVER_NAME: "Stickman Fight PR7"
+      MAX_PLAYERS: "4"
+      NET_PROFILE: "ip"
+
+    # Публикация порта на хосте: без этого EXPOSE в Dockerfile ничего не открывает.
+    # Протокол указан явно: игровой трафик идёт по UDP.
+    ports:
+      - "7777:7777/udp"
+
+    # Ограничения на случай утечки памяти или зависания в цикле: сервер не уронит всю VM.
+    mem_limit: 1g
+    cpus: 1.5
+
+    # Логи: stdout контейнера с ротацией, чтобы `docker logs` не заполнил диск VM.
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"

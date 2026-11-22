@@ -1,0 +1,144 @@
+﻿[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[SteamSockets] клиент 1 подключён: адрес 192.168.31.234:55717, прямое соединение (relay не используется); End-to-end connection: connected
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:52:20.040] Персонаж игрока 1 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:52:20.232] [РЕПЛИКАЦИЯ] клиент 1 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:52:20.233] [СЕРВЕР] подключился клиент 1
+[Server 18:52:20] игрок 1 подключился, всего игроков: 1/4
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[entrypoint] Stickman Fight dedicated server: profile=steam, port=7777/udp, max=4
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+Processor: Intel(R) Core(TM) Ultra 5 125H, 2 core(s) @ 2995 MHz 
+Available Memory: 3911 MB 
+Linux Kernel and distribution: Linux 5.15 Ubuntu 22.04 64bit
+System Language: en
+Keyboard Layout: default
+Mono path[0] = '/srv/game/StickmanServer_Data/Managed'
+Mono config path = '/srv/game/StickmanServer_Data/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.6.10f1 (40e81493c67d)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /srv/game/StickmanServer_Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.012 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.514447 ms
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+dlopen failed trying to load:
+steamclient.so
+with error:
+steamclient.so: cannot open shared object file: No such file or directory
+flock /sys/devices/virtual/dmi/id/sys_vendor LOCK_SH failed. errno = 13flock /sys/devices/virtual/dmi/id/product_name LOCK_SH failed. errno = 13[S_API] SteamAPI_Init(): Loaded '/srv/game/.steam/sdk64/steamclient.so' OK.  (First tried local 'steamclient.so')
+Setting breakpad minidump AppID = 480
+SteamInternal_SetMinidumpSteamID:  Caching Steam ID:  76561197960265728 [API loaded no]
+[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+[Steam 18:52:27] Steam GameServer инициализирован: App 480, игровой порт 7777/udp, query-порт 27015/udp, теги «proj:MultiplayerCourse_Stickman,build:0.1.0,mode:Deathmatch». Ждём регистрации в Steam...
+[SteamSockets] сервер: listen socket на UDP 7777 создан
+[Prac4] [18:52:28.027] [СЕРВЕР] на арене создано реплицируемых акторов: 168
+[Server 18:52:28] READY: сервер «Stickman Fight PR7» слушает 0.0.0.0:7777/udp, карта Prac5_Replication, профиль steam, транспорт SteamSocketsTransport, мест 4, сборка 0.1.0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[Steam 18:52:29] сессия опубликована в Steam: SteamID сервера 90298029166876675, публичный IP <скрыт>
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[S_API FAIL] Tried to access Steam interface SteamNetworkingUtils004 before SteamAPI_Init succeeded.
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[SteamSockets] клиент 1 подключён: адрес 192.168.56.1:55867, прямое соединение (relay не используется); End-to-end connection: connected
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:52:50.479] Персонаж игрока 1 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:52:50.647] [РЕПЛИКАЦИЯ] клиент 1 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:52:50.648] [СЕРВЕР] подключился клиент 1
+[Server 18:52:50] игрок 1 подключился, всего игроков: 1/4
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+src/steamnetworkingsockets/clientlib/steamnetworkingsockets_lowlevel_misc.cpp (523) : usecElapsed >= 0
+[Prac4] [18:52:56.472] [СЕРВЕР] отключился клиент 1
+[Server 18:52:56] игрок 1 отключился, осталось игроков: 0
+[Server 18:52:56] получен сигнал остановки, завершаем сервер
+[Steam 18:52:57] сессия снята с публикации и уничтожена, Steam GameServer остановлен
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+CodeReloadManager destroyed

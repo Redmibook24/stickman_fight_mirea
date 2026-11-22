@@ -1,0 +1,11 @@
+# Дополнение для VM в VirtualBox на Windows с включённым Hyper-V (его включают WSL2 и Docker Desktop).
+# VirtualBox тогда работает поверх Hyper-V, и счётчик тактов (TSC) на виртуальных ядрах расходится.
+# Steam Sockets меряет время по нему: при переходе потока на другое ядро время «идёт назад»
+# (в логе assert «usecElapsed >= 0»), соединения рвутся по тайм-ауту, сервер может зависнуть при выходе.
+# Привязка к одному ядру убирает расхождение: на стенде 74 assert за прогон без привязки и 0 с ней.
+# На облачной VM этот файл не нужен.
+#
+#   docker compose -f deploy/compose.yaml -f deploy/compose.steam.yaml -f deploy/compose.vbox.yaml up -d
+services:
+  server:
+    cpuset: "0"

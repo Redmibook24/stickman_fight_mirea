@@ -1,0 +1,16 @@
+﻿OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:22:26.596] Персонаж игрока 2 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:22:26.693] [РЕПЛИКАЦИЯ] клиент 2 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:22:26.693] [СЕРВЕР] подключился клиент 2
+[Server 18:22:26] игрок 2 подключился, всего игроков: 2/4
+[Prac4] [18:22:27.045] [СЕРВЕР] отключился клиент 1
+[Server 18:22:27] игрок 1 отключился, осталось игроков: 1
+[Prac4] [18:22:27.045] [СЕРВЕР] отключился клиент 2
+[Server 18:22:27] игрок 2 отключился, осталось игроков: 0
+[Server 18:22:27] получен сигнал остановки, завершаем сервер
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+CodeReloadManager destroyed
