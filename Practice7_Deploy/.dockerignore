@@ -1,0 +1,9 @@
+# Контекст сборки образа: в него нужны только серверный билд и скрипты развёртывания.
+# Всё остальное (Library на гигабайты, исходники, документы) Docker не копирует,
+# поэтому сборка быстрая и в образ не попадает лишнее.
+*
+!Builds/LinuxServer/
+!deploy/entrypoint.sh
+# Отладочные символы серверу в рантайме не нужны
+Builds/LinuxServer/**/*_BackUpThisFolder_ButDontShipItWithYourGame/
+Builds/LinuxServer/**/*_BurstDebugInformation_DoNotShip/

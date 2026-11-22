@@ -1,0 +1,12 @@
+﻿[Steam] клиент: Steam API инициализирован, пользователь <скрыт>
+[Session 21:24:23] поиск сессий в локальной сети: gamedir=stickman_pr7, теги «proj:MultiplayerCourse_Stickman,build:0.1.0»
+[Session 21:24:25] поиск завершён (eServerResponded): найдено сессий 1
+[Session 21:24:25] проверка сессии «Stickman Fight PR7» перед подключением
+[Session 21:24:25] строка подключения от Steam: 192.168.56.1:7777
+[Session 21:24:25] подключение к 192.168.56.1:7777
+[SteamSockets] клиент: подключение к 192.168.56.1:7777 начато
+[SteamSockets] соединение с сервером установлено: адрес 192.168.56.1:7777, прямое соединение (relay не используется); End-to-end connection: connected
+[Prac4] [21:24:25.489] Персонаж игрока 1 появился. Роль: Autonomous Proxy (владелец)
+[Session 21:24:25] в игре на 192.168.56.1:7777, id 1
+[SteamSockets] соединение закрыто: k_ESteamNetworkingConnectionState_ClosedByPeer, причина 1000 disconnected by server
+[Session 21:24:25] ошибка: сервер 192.168.56.1:7777 завершил работу

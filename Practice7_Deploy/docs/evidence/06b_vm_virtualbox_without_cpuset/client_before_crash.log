@@ -1,0 +1,12 @@
+﻿[Steam] клиент: Steam API инициализирован, пользователь <скрыт>
+[Session 21:52:17] поиск сессий в локальной сети: gamedir=stickman_pr7, теги «proj:MultiplayerCourse_Stickman,build:0.1.0»
+[Session 21:52:19] поиск завершён (eServerResponded): найдено сессий 1
+[Session 21:52:19] проверка сессии «Stickman Fight PR7» перед подключением
+[Session 21:52:19] строка подключения от Steam: 192.168.31.234:7777
+[Session 21:52:19] подключение к 192.168.31.234:7777
+[SteamSockets] клиент: подключение к 192.168.31.234:7777 начато
+[SteamSockets] соединение с сервером установлено: адрес 192.168.31.234:7777, прямое соединение (relay не используется); End-to-end connection: connected
+[Prac4] [21:52:19.892] Персонаж игрока 1 появился. Роль: Autonomous Proxy (владелец)
+[Session 21:52:19] в игре на 192.168.31.234:7777, id 1
+[SteamSockets] соединение закрыто: k_ESteamNetworkingConnectionState_ProblemDetectedLocally, причина 5003 Connection dropped
+[Session 21:52:43] ошибка: сервер 192.168.31.234:7777 перестал отвечать (обрыв связи или падение сервера)

@@ -1,0 +1,85 @@
+﻿[entrypoint] Stickman Fight dedicated server: profile=ip, port=7777/udp, max=4
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+Processor: Intel(R) Core(TM) Ultra 5 125H, 18 core(s) @ 2995 MHz 
+Available Memory: 7624 MB 
+Linux Kernel and distribution: Linux 5.15 Ubuntu 22.04 64bit
+System Language: en
+Keyboard Layout: default
+Mono path[0] = '/srv/game/StickmanServer_Data/Managed'
+Mono config path = '/srv/game/StickmanServer_Data/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+PlayerPrefs - Creating folder: /srv/game/.config/unity3d/DefaultCompany
+PlayerPrefs - Creating folder: /srv/game/.config/unity3d/DefaultCompany/prac5_replication
+Unable to load player prefs
+Initialize engine version: 6000.6.10f1 (40e81493c67d)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /srv/game/StickmanServer_Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.010 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 2.040102 ms
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:20:36.631] [СЕРВЕР] на арене создано реплицируемых акторов: 168
+[Server 18:20:36] READY: сервер «Stickman Fight PR7» слушает 0.0.0.0:7777/udp, карта Prac5_Replication, профиль ip, транспорт CountingTransport, мест 4, сборка 0.1.0
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:20:41.902] Персонаж игрока 1 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:20:42.033] [РЕПЛИКАЦИЯ] клиент 1 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:20:42.034] [СЕРВЕР] подключился клиент 1
+[Server 18:20:42] игрок 1 подключился, всего игроков: 1/4
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:20:44.850] Персонаж игрока 2 появился. Роль: серверная копия (авторитет)
+[Prac4] [18:20:44.949] [РЕПЛИКАЦИЯ] клиент 2 синхронизирован, начинаем репликацию акторов
+[Prac4] [18:20:44.949] [СЕРВЕР] подключился клиент 2
+[Server 18:20:44] игрок 2 подключился, всего игроков: 2/4
+[Prac4] [18:21:25.237] [СЕРВЕР] отключился клиент 1
+[Server 18:21:25] игрок 1 отключился, осталось игроков: 1
+[entrypoint] Stickman Fight dedicated server: profile=ip, port=7777/udp, max=4
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+Processor: Intel(R) Core(TM) Ultra 5 125H, 18 core(s) @ 2995 MHz 
+Available Memory: 7624 MB 
+Linux Kernel and distribution: Linux 5.15 Ubuntu 22.04 64bit
+System Language: en
+Keyboard Layout: default
+Mono path[0] = '/srv/game/StickmanServer_Data/Managed'
+Mono config path = '/srv/game/StickmanServer_Data/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.6.10f1 (40e81493c67d)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /srv/game/StickmanServer_Data/UnitySubsystems
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.012 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.706430 ms
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+OnGUI function detected on MonoBehaviour, but not called, because IMGUI module is stripped.
+[Prac4] [18:21:28.151] [СЕРВЕР] на арене создано реплицируемых акторов: 168
+[Server 18:21:28] READY: сервер «Stickman Fight PR7» слушает 0.0.0.0:7777/udp, карта Prac5_Replication, профиль ip, транспорт CountingTransport, мест 4, сборка 0.1.0

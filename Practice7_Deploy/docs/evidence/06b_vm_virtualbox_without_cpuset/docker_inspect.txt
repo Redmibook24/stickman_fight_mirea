@@ -1,0 +1,5 @@
+﻿VM: Ubuntu 22.04.5 LTS, Docker 29.8.1
+RestartCount = 1
+docker compose stop: 2 с, ExitCode = 0
+Пользователь процесса: 
+game

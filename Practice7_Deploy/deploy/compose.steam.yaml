@@ -1,0 +1,13 @@
+# Steam-профиль: дополнение к compose.yaml, подключается вторым файлом.
+#   docker compose -f deploy/compose.yaml -f deploy/compose.steam.yaml up -d --build
+#
+# Отличия от IP-профиля:
+#   - сервер регистрируется в Steam (GameServer) и работает через транспорт Steam Sockets;
+#   - публикуется ещё query-порт Steam, на него отвечает сервер при поиске сессий.
+# Клиент IP-профиля к такому серверу не подключится: транспорты разные.
+services:
+  server:
+    environment:
+      NET_PROFILE: "steam"
+    ports:
+      - "27015:27015/udp"
